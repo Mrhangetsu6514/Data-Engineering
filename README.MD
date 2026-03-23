@@ -60,10 +60,3 @@ Access the Airflow Web UI at http://localhost:8080 using the credentials you def
 Quality Gates: Integrating data validation layers to ensure "clean" property data before BI ingestion.
 
 Cloud Migration: Preparing the Dockerized stack for deployment on AWS or GCP.
-
-📈 Future Roadmap
-Integration of Great Expectations for advanced data quality unit testing.
-
-Implementation of Prometheus and Grafana for real-time container monitoring.
-
-Expansion of the property pipeline to include historical price trend analysis.
