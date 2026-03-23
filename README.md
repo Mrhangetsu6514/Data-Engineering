@@ -84,6 +84,3 @@ docker-compose up -d
 * **Quality Gates:** Integrating data validation layers to ensure "clean" property data before BI ingestion.
 * **Cloud Migration:** Preparing the Dockerized stack for deployment on AWS or GCP.
 
----
-
-**Would you like me to help you format a specific "About the Founder" section to highlight your leadership at Matzati.casa in the README?**
