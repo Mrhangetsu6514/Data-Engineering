@@ -1,56 +1,65 @@
-Data Engineering Pipeline: Airflow, Docker, & Tableau
-🚀 Project Overview
-This repository contains a containerized Apache Airflow environment designed to automate end-to-end data lifecycles. Originally built to power the Matzati.casa property platform, this architecture handles everything from complex web scraping of the Israeli rental market to triggering automated Business Intelligence (BI) refreshes in Tableau.
+🚀 Data Engineering Pipeline: Airflow, Docker, & Tableau
+Orchestrating the Matzati.casa Property Platform & BI Automation
+📂 Project Structure
+A clean, modular organization is maintained to ensure the scalability of the Matzati property listing tools:
 
-🏗️ Technical Architecture
-For a deep dive into the system design, security protocols, and component interaction, please refer to our detailed documentation:
-👉 View the ARCHITECTURE.md
+Plaintext
+├── dags/                   # Python DAGs (Scrapers, ETL, Tableau Refreshes)
+│   ├── property_pipeline.py # Core logic for Matzati listings
+│   └── tableau_refresh.py  # Automation for BI extracts
+├── config/                 # Airflow configuration files
+├── plugins/                # Custom Airflow operators or sensors
+├── .env.example            # TEMPLATE for secrets (Add to .gitignore!)
+├── .gitignore              # Rules to exclude secrets and OS metadata
+├── ARCHITECTURE.md         # Deep dive into system design
+├── docker-compose.yaml     # Container orchestration (CeleryExecutor)
+├── requirements.txt        # Python dependencies (TSC, Psycopg2)
+└── README.md               # You are here
+🛠️ Technology Stack
+This project bridges the gap between raw data extraction and high-level marketing decision-making:
 
-🛠️ Tech Stack
-Orchestration: Apache Airflow 3.1.7 (CeleryExecutor)
+Orchestration: Apache Airflow 3.1.7 using CeleryExecutor for high-concurrency task management.
 
-Containerization: Docker & Docker Compose
+Containerization: Docker & Docker Compose for environment isolation and portability.
 
-Database: PostgreSQL 16 (Metadata & Storage)
+Storage: PostgreSQL 16 for robust metadata management and listing storage.
 
-Messaging: Redis (Celery Broker)
+BI Automation: Tableau Server Client (TSC) via REST API for instant dashboard updates.
 
-BI Integration: Tableau Server Client (TSC) & REST API
+🛡️ Security & Portability
+As a founder and developer, I prioritize Infrastructure as Code (IaC) and security best practices:
 
-Language: Python (Scraping, ETL, & DAG logic)
+Zero-Hardcoding Policy: All sensitive credentials for the Airflow UI, Postgres, and Tableau are managed through externalized environment variables.
 
-✨ Key Features
-Automated BI Handshake: Automatically triggers Tableau extract refreshes only after data validation tasks succeed.
+Clean Version Control: The .gitignore is optimized to block local Windows metadata (*.Identifier), environment backups (.env.save), and Python cache files.
 
-Security First: Implements a strict Zero-Hardcoding Policy. All sensitive credentials for the Airflow UI, Postgres, and Tableau are managed via encrypted environment variables.
+Variable-Driven Config: Internal connection strings (SQL Alchemy/Celery) are dynamically constructed using environment variables to prevent accidental exposure.
 
-Robust Scraping Pipelines: Includes production-ready scrapers designed to handle dynamic data extraction and storage.
+📘 Documentation
+To understand the logic behind the "Tableau-Airflow Handshake" and the security implementation, see the full architectural breakdown:
 
-Portability: Optimized docker-compose configuration with modular volume persistence and automated dependency management via requirements.txt.
+🔗 View the Technical ARCHITECTURE.md
+🚀 Getting Started
+1. Prerequisites
+Ensure you have Docker and Docker Compose installed on your machine.
 
-🚦 Getting Started
-Prerequisites
-Docker and Docker Compose installed.
-
-A Tableau Cloud/Server account (for BI automation features).
-
-Installation
-Clone the repository:
-
-Bash
-git clone https://github.com/Mrhangetsu6514/Data-Engineering.git
-cd Data-Engineering
-Configure Environment Variables:
-Copy the template and fill in your specific credentials:
+2. Configuration
+The repository excludes private secrets. You must create your own .env file based on the provided template:
 
 Bash
 cp .env.example .env
-Launch the Stack:
+# Edit .env with your specific Airflow and DB credentials
+3. Deployment
+Launch the entire stack with a single command:
 
 Bash
 docker-compose up -d
-Access the UI:
-Open localhost:8080 and log in using the credentials defined in your .env file.
+Access the Airflow Web UI at http://localhost:8080 using the credentials you defined in your .env.
+
+🏗️ Future Roadmap
+Quality Gates: Integrating data validation layers to ensure "clean" property data before BI ingestion.
+
+Cloud Migration: Preparing the Dockerized stack for deployment on AWS or GCP.
 
 📈 Future Roadmap
 Integration of Great Expectations for advanced data quality unit testing.
