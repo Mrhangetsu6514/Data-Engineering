@@ -1,5 +1,3 @@
-To give your **Data-Engineering** repository a professional, "top-tier" look, this README uses a clean hierarchy, visual separators, and a clear directory tree. This structure is designed to immediately show a recruiter that you are organized and understand production-level environments.
-
 ---
 
 # 🚀 Data Engineering Pipeline: Airflow, Docker, & Tableau
