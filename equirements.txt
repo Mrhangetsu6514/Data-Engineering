@@ -1,0 +1,3 @@
+apache-airflow-providers-tableau
+tableauserverclient
+psycopg2-binary
